@@ -1,3 +1,5 @@
+TESTIEDITOINTI
+
 $ git log --stat | cat
 commit fa874cadb81e52e7a9296b6b1e7169a05ed93fa9
 Author: Teemu Bergman <teemu.bergman@helsinki.fi>
