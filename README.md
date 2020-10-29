@@ -1,4 +1,6 @@
-# OHJELMISTOTEKNIIKKA
-## Harjoitustyön tiedot
+## Ohjelmistotekniikka, harjoitustyö
 
-Tämä on **README.md tiedosto**, joka on muotoiltu käyttäen *markdown-notaatiota*.
+### Viikko 1
+[komentorivi.txt](https://github.com/TeemuBergman/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+
+[gitlog.txt](https://github.com/TeemuBergman/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
