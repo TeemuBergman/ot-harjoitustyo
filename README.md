@@ -5,5 +5,4 @@
 
 [gitlog.txt](https://github.com/TeemuBergman/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
-Tämä on lokaali päivitys!
-Epäsynkrooni
+Tämä on lokaali päivitys! Epäsynkrooni!
