@@ -55,15 +55,15 @@ public class MaksukorttiTest {
     }
 
     @Test
-    public void kortinSaldoEiYlitaMaksimiarvoa() {
-        kortti.lataaRahaa(200);
-        assertEquals("Kortilla on rahaa 150.0 euroa", kortti.toString());
-    }
-
-    @Test
     public void lataaNegatiivinenSummaRahaa() {
         kortti.lataaRahaa(-20);
         assertEquals("Kortilla on rahaa 10.0 euroa", kortti.toString());
+    }
+
+    @Test
+    public void kortinSaldoEiYlitaMaksimiarvoa() {
+        kortti.lataaRahaa(200);
+        assertEquals("Kortilla on rahaa 150.0 euroa", kortti.toString());
     }
 
     @Test
