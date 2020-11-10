@@ -31,7 +31,7 @@ public class KassapaateTest {
         assertEquals(0, kassa.maukkaitaLounaitaMyyty());
     }
 
-    // KÄTEISOSTON TESTIT
+    // KÄTEISOSTOJEN TESTIT
     @Test
     public void saldoKasvaaEdullisenLounaanVerranSekaVaihtorahaOnOikein() {
         assertEquals(260, kassa.syoEdullisesti(500));
@@ -70,7 +70,7 @@ public class KassapaateTest {
         assertEquals(0, kassa.maukkaitaLounaitaMyyty());
     }
 
-    // KORTTIOSTON TESTIT
+    // KORTTIOSTOJEN TESTIT
     @Test
     public void josKortillaOnSaldoaSyoEdullisestiPalauttaaTrue() {
         assertTrue(kassa.syoEdullisesti(kortti));
