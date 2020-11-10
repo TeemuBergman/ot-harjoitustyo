@@ -44,5 +44,4 @@ public class MaksukorttiTest {
     public void falseJosSaldoEiRiittanyt() {
         assertFalse(kortti.otaRahaa(2000));
     }
-
 }
