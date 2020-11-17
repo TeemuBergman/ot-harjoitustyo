@@ -41,10 +41,3 @@ class TestPlayer(unittest.TestCase):
         self.player.add_card(self.card_2)
         self.player.clear_hand()
         self.assertEqual(self.player.get_cards(), [])
-
-    def test_ingame_status(self):
-        self.player.add_card(self.card_1)
-        self.player.add_card(self.card_2)
-        sum_of_cards = self.card_1 + self.card_2
-        self.assertEqual(self.player.ingame_status()[0], f"TestPlayer's hand: {sum_of_cards} {[self.card_1, self.card_2]}")
-        self.assertEqual(self.player.ingame_status()[1], f"Cash balance: 1000.0 €")
