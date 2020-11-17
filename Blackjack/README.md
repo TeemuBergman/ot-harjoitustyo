@@ -10,6 +10,7 @@ Sovellus on tehty Helsingin yliopiston Tietojenkäsittelytieteen kurssin Ohjelmi
 Sovellus on testattu Python-versiolla '3.8.6'. Python-versiota '3.8' vanhemmilla toimintaa ei voida taata.
 
 ## Dokumentaatio
+- [Käyttöohje](./dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Testausdokumentti](./dokumentaatio/testausdokumentti.md)
 
