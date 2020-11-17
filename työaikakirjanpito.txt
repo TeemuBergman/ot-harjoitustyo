@@ -7,6 +7,6 @@
  10.11. 5     Blackjack pelin ohjelmointia
  13.11. 4     Blackjack pelin ohjelmointia
  17.11. 6     Blackjack pelin ohjelmointia
- 17.11. 1     Pytest testien kirjoittamista Player luokalle
+ 17.11. 2     Pytest testien kirjoittamista Player luokalle
  17.11. 1     Pipenv ongelmien ratkomista
- yht    22
+ yht    23
