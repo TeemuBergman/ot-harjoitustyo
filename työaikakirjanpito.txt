@@ -1,0 +1,12 @@
+# työaikakirjanpito
+
+ päivä  aika  mitä tein  
+ ----------------------
+ 5.11.  2     Pipenv:iin tutustumista ja Pythonin asentamista kehitysympäristöön
+ 5.11.  3     Blackjack pelin ohjelmointia
+ 10.11. 5     Blackjack pelin ohjelmointia
+ 13.11. 4     Blackjack pelin ohjelmointia
+ 17.11. 6     Blackjack pelin ohjelmointia
+ 17.11. 1     Pytest testien kirjoittamista Player luokalle
+ 17.11. 1     Pipenv ongelmien ratkomista
+ yht    22
