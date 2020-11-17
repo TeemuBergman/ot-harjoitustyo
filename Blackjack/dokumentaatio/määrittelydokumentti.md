@@ -5,7 +5,7 @@ Blackjack-korttipeli on tarkoitettu kaikille kortti- ja uhkapeleistä kiinnostun
 Alkuvaiheessa pelaajia voi olla vain yksi talon jakajaa vastaan. Moninpelin mahdollisuutta mietitään ajan asettamien rajoitusten puitteessa.
 ## Käyttöliittymä
 Ensimmäinen hahmotelma käyttöliittymästä
-![käyttöliittymä](/dokumentaatio/kayttoliittyma.jpg)
+![käyttöliittymä](kayttoliittyma.jpg)
 ## Perusversion toiminnallisuudet
 - Mahdollisuus pelata Blackjack korttipeliä
 ## Jatkokehitysideat
