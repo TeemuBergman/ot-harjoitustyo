@@ -52,12 +52,12 @@ class Game:
         if cards_sum > 21:
             self.player.add_cash(-self.bet)
             self.game_over = True
-            print(f"\nYOU BUSTED!\n{self.player.ingame_status()}\n")
+            print("YOU BUSTED!\n", self.player.ingame_status(), "\n")
             return False
         elif cards_sum == 21:
             self.player.add_cash(self.bet * 1.5)
             self.game_over = True
-            print(f"\nYOU GOT BLACKJACK!\n{self.player.ingame_status()}\n")
+            print("\n", "YOU GOT BLACKJACK!\n", self.player.ingame_status(), "\n")
             return False
         else:
             return True

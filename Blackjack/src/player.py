@@ -30,4 +30,4 @@ class Player:
         self.cards.clear()
 
     def ingame_status(self):
-        return f"{self.get_player_name()}'s hand: {self.get_sum_of_cards()} {self.get_cards()}", f"Cash balance: {self.get_cash_balance()} €"
+        return [self.get_player_name(), self.get_sum_of_cards(), self.get_cards()], ["Cash balance:", self.get_cash_balance(), "€"]
