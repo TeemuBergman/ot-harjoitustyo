@@ -6,4 +6,4 @@
 [gitlog.txt](https://github.com/TeemuBergman/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
 ### Viikko 2
-[määrittelydokumentti.md](https://github.com/TeemuBergman/ot-harjoitustyo/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
+[määrittelydokumentti.md](https://github.com/TeemuBergman/ot-harjoitustyo/blob/master/Blackjack/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
