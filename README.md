@@ -18,10 +18,13 @@ Sovellus on testattu Python-versiolla '3.8.6'. Python-versiota '3.8' vanhemmilla
 
 1. Lataa reposition, pura paketti ja navigoi komentorivillä kansioon _Blackjack_.
 
-2. Asenna riippuvuudet komennolla:
+2. Jos Pipenv ei ole asennettu, asenna se komennolla:
 ```pip3 install --user pipenv```
 
-2. Käynnistä sovellus komennolla:
+3. Asenna riippuvuudet komennolla:
+```python3 -m pipenv install```
+
+4. Käynnistä sovellus komennolla:
 ```python3 -m pipenv run start```
 
 ## Komentorivitoiminnot
