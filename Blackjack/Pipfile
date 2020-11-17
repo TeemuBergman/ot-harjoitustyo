@@ -12,6 +12,6 @@ coverage-report = "coverage html"
 [packages]
 pytest = "*"
 coverage = "*"
+pylint = "*"
 
 [dev-packages]
-
