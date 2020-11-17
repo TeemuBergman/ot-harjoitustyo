@@ -16,20 +16,11 @@ Sovellus on testattu Python-versiolla '3.8.6'. Python-versiota '3.8' vanhemmilla
 
 ## Asennus
 
-1. Asenna riippuvuut komennolla:
-```bash
-python3 -m pipenv install
-```
+1. Asenna riippuvuudet komennolla:
+```pip3 install --user pipenv```
 
-2. Suorita vaadittavat alustustoimenpiteet komennolla:
-```bash
-python3 -m pipenv run build
-```
-
-3. Käynnistä sovellus komennolla:
-```bash
-python3 -m pipenv run start
-```
+2. Käynnistä sovellus komennolla:
+```python3 -m pipenv run start```
 
 ## Komentorivitoiminnot
 
@@ -37,30 +28,22 @@ python3 -m pipenv run start
 
 Ohjelman pystyy suorittamaan komennolla:
 
-```bash
-python3 -m pipenv run start
-```
+```python3 -m pipenv run start```
 
 ### Testaus
 
 Testit suoritetaan komennolla:
 
-```bash
-python3 -m pipenv run test
-```
+```python3 -m pipenv run test```
 
 ### Testikattavuus
 
 Testikattavuus kerätään kommenolla:
 
-```bash
-python3 -m pipenv run coverage
-```
+```python3 -m pipenv run coverage```
 
 Tämän jälkeen raportin voi generoida komennolla:
 
-```bash
-python3 -m pipenv run coverage-report
-```
+```python3 -m pipenv run coverage-report```
 
 Raportti generoituu _htmlcov_-hakemistoon.
