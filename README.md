@@ -16,7 +16,9 @@ Sovellus on testattu Python-versiolla '3.8.6'. Python-versiota '3.8' vanhemmilla
 
 ## Asennus
 
-1. Asenna riippuvuudet komennolla:
+1. Lataa reposition, pura paketti ja navigoi komentorivillä kansioon _Blackjack_.
+
+2. Asenna riippuvuudet komennolla:
 ```pip3 install --user pipenv```
 
 2. Käynnistä sovellus komennolla:
