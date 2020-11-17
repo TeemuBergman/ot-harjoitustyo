@@ -16,7 +16,7 @@ Sovelluksen järjestelmätestausta on suoritettu manuaalisesti.
 
 ### Asennus ja konfigurointi
 
-Sovellus on haettu ja sen asennusta on testattu käyttöohjen mukaisesti Windows-ympäristössä. Tulevaisuudessa nämä testit laajennetaan myös Linux-ympäristöön.
+Sovellus on haettu ja sen asennusta on testattu [käyttöohjeen](kayttoohje.md) mukaisesti Windows-ympäristössä. Tulevaisuudessa nämä testit laajennetaan myös Linux-ympäristöön.
 
 ## Laatuongelmat
 
