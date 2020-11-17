@@ -9,4 +9,5 @@
  17.11. 6     Blackjack pelin ohjelmointia
  17.11. 2     Pytest testien kirjoittamista Player luokalle
  17.11. 1     Pipenv ongelmien ratkomista
- yht    23
+ 17.11. 1     Dokumentaation kirjoittamista
+ yht    24
