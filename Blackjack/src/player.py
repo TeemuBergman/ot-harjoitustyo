@@ -30,10 +30,8 @@ class Player:
         return self.name
 
     def ingame_status(self):
-        """
-        Return Player's status as a tuple.
+        """Return Player's status as a tuple.
         Tuple contains: Player's name, sum of cards,
-        all the cards and cash balance.
-        """
-        return [self.get_player_name(), self.hand.get_sum_of_cards(), self.hand.get_cards()], \
+        all the cards and cash balance."""
+        return [self.get_player_name(), self.hand.get_sum_of_cards(), self.hand.get_all_cards()], \
                ["Cash balance:", self.get_cash_balance(), "€"]

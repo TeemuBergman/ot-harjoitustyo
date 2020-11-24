@@ -14,7 +14,7 @@ class Game:
         self.dealer = Player("Dealer", 1000000)
         self.player = Player("Player", 1000)
         self.bet = 100
-        self.game_over = False
+        self.game_status = True
 
     def main_game(self):
         """Main loop of the game."""
@@ -25,15 +25,15 @@ class Game:
             print(self.player.ingame_status()[1], "\n")
             self.clear_table()
             self.set_player_cards()
-            if not self.game_over:
+            if self.game_status:
                 self.set_dealer_cards()
 
     def clear_table(self):
         """Clear table before start of a new hand."""
-        self.game_over = False
-        # Clear Players hand.
+        self.game_status = True
+        # Clear Dealers and Players hand.
         self.player.hand.clear_hand()
-        # Clear Dealers hand and deal one card it.
+        # Deal one card to Dealer.
         self.dealer.hand.clear_hand()
         self.deal_to_dealer()
 
@@ -51,10 +51,12 @@ class Game:
 
     def set_player_cards(self):
         """Loop for dealing Players cards and giving options during one hand."""
-        # Deal first two cards
+        # Deal first two cards.
         for _ in range(2):
             self.deal_to_player()
-        # Player makes a decision
+        # Check if the first two cards are same value.
+        self.player.hand.split_available()
+        # Player makes a decision.
         while self.check_player_status():
             print(self.player.ingame_status()[0])
             ans = input("(D)eal, (S)tay or (Q)uit: ").upper()
@@ -77,16 +79,16 @@ class Game:
         cards_sum = self.player.hand.get_sum_of_cards()
         if self.player.get_cash_balance() < self.bet:
             print("OUT OF CASH!")
-            self.game_over = True
+            self.game_status = False
             return False
         if cards_sum > 21:
             self.player.cash_reduce(self.bet)
-            self.game_over = True
+            self.game_status = False
             print("YOU BUSTED!\n", self.player.ingame_status(), "\n")
             return False
         if cards_sum == 21:
             self.player.cash_add(self.bet * 1.5)
-            self.game_over = True
+            self.game_status = False
             print("\n", "YOU GOT BLACKJACK!\n", self.player.ingame_status(), "\n")
             return False
         return True
