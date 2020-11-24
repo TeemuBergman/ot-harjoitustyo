@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa projektin viimeisimmän [releasen](https://github.com/TeemuBergman/ot-harjoitustyo/releases) lähdekoodi valitsemalla _Assets_-osion alta _Source code_.
+Lataa projektin viimeisin versio lähdekoodista ja navigoi komentorivillä kansioon minne purit sen.
 
 ## Ohjelman käynnistäminen
 
