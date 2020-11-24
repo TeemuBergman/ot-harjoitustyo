@@ -12,7 +12,7 @@ class TestShoe(TestCase):
         self.shoe = Shoe()
 
     def test_create_shoe(self):
-        """Check that the shoe size is 312 after initialization."""
+        """Check that the shoe size is 312 cards after initialization."""
         self.assertEqual(self.shoe.get_size(), 312)
 
     def test_get_card(self):

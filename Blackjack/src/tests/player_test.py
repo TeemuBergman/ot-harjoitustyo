@@ -10,9 +10,6 @@ class TestPlayer(TestCase):
     def setUp(self):
         """Init for Player class tests"""
         self.player = Player("TestPlayer", 1000)
-        self.card_1 = 7
-        self.card_2 = 4
-        self.card_3 = 10
 
     def test_player_name(self):
         """Test if Player gets its name right on init."""
