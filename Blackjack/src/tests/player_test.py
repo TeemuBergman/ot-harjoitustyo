@@ -1,43 +1,33 @@
-import unittest
+"""Here are all the tests for Player class."""
+
+from unittest import TestCase
 from player import Player
-from shoe import Shoe
 
 
-class TestPlayer(unittest.TestCase):
+class TestPlayer(TestCase):
+    """TestPlayer class for all Player class tests."""
+
     def setUp(self):
+        """Init for Player class tests"""
         self.player = Player("TestPlayer", 1000)
-        self.shoe = Shoe()
-        self.card_1 = self.shoe.get_card()
-        self.card_2 = self.shoe.get_card()
+        self.card_1 = 7
+        self.card_2 = 4
+        self.card_3 = 10
 
     def test_player_name(self):
+        """Test if Player gets its name right on init."""
         self.assertEqual(self.player.get_player_name(), "TestPlayer")
 
     def test_cash_balance(self):
+        """Check that player has a right cash balance on init."""
         self.assertEqual(self.player.get_cash_balance(), 1000)
 
-    def test_add_cash(self):
-        self.player.add_cash(1000)
+    def test_cash_add(self):
+        """Check that Player's cash balance is correct after adding some cash."""
+        self.player.cash_add(1000)
         self.assertEqual(self.player.get_cash_balance(), 2000)
 
-    def test_add_and_get_first_card(self):
-        self.player.add_card(self.card_1)
-        self.player.add_card(self.card_2)
-        self.assertEqual(self.player.get_first_card(), self.card_1)
-
-    def test_add_and_get_cards(self):
-        self.player.add_card(self.card_1)
-        self.player.add_card(self.card_2)
-        self.assertEqual(self.player.get_cards(), [self.card_1, self.card_2])
-
-    def test_get_sum_of_cards(self):
-        self.player.add_card(self.card_1)
-        self.player.add_card(self.card_2)
-        sum_of_cards = self.card_1 + self.card_2
-        self.assertEqual(self.player.get_sum_of_cards(), sum_of_cards)
-
-    def test_clear_hand(self):
-        self.player.add_card(self.card_1)
-        self.player.add_card(self.card_2)
-        self.player.clear_hand()
-        self.assertEqual(self.player.get_cards(), [])
+    def test_cash_reduce(self):
+        """Check that Player's cash balance is correct after reducing some cash."""
+        self.player.cash_reduce(1000)
+        self.assertEqual(self.player.get_cash_balance(), 0)
