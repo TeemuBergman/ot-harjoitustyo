@@ -4,11 +4,15 @@ Ohjelmaa on testattu sekä automatisoiduin yksikkö- ja integraatiotestein unitt
 
 ## Testikattavuus
 
-Testaukset ovat vasta aluillaan ja oikeastaan vain _player.py_ tämän hetkinen versio on testattu. Tästä johtuen testien kattavuus on tällä hetkellä vain 26%.
+Testauksia on laajennettu koskemaan jokaista luokkaa ja testauksen haarautumakattavuus on tällä hetkellä `67%`.
 
 ![](kattavuusraportti.jpg)
 
-Testaamatta jäivät _game.py_, _main.py_ sekä osittain _shoe.py_. Nämä lisätään mukaan testeihin seuraavassa päivityksessä.
+Testauksia laajennetaan seuraavaan versioon, sillä tavoitteena on lähes 100% haarautumakattavuus.
+
+## Pylint
+
+Pylintillä suoritettujen testien arvosana on tällä hetkellä `10.00/10`. Koodia on muokattu Pylintin antamien ilmoitusten mukaisesti ja jokaiselle luokalle, metodille sekä funktiolle on lisätty sen toimintaa selittävä docstring.
 
 ## Järjestelmätestaus
 
@@ -20,4 +24,5 @@ Sovellus on haettu ja sen asennusta on testattu [käyttöohjeen](kayttoohje.md) 
 
 ## Laatuongelmat
 
-Sovellus on tällä hetkellä ensimmäisessä versiossaan, eikä se edusta lopullista tuotetta.
+Sovellus on tällä hetkellä ensimmäisessä versiossaan, eikä se edusta lopullista tuotetta, sillä muun muassa puuttuvia toiminnallisuuksia on vielä lukuisia.
+
