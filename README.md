@@ -7,48 +7,69 @@ Sovellus on tässä vaiheessa suoritettavissa vain komentoriviltä, mutta seuraa
 Sovellus on tehty Helsingin yliopiston Tietojenkäsittelytieteen kurssin Ohjelmistotekniikka harjoitustyönä.
 
 ## Python-versio
-Sovellus on testattu Python-versiolla '3.8.6'. Python-versiota '3.8' vanhemmilla toimintaa ei voida taata.
+Sovellus on testattu Python-versiolla `3.8.6` ja tätä Python-versiota vanhemmilla toimintaa ei voida taata.
 
 ## Dokumentaatio
 - [Käyttöohje](./Blackjack/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./Blackjack/dokumentaatio/vaatimusmaarittely.md)
 - [Testausdokumentti](./Blackjack/dokumentaatio/testausdokumentti.md)
+- [Arkkitehtuurikuvaus](./Blackjack/dokumentaatio/arkkitehtuuri.md)
+- [Työaikakirjanpito](työaikakirjanpito.txt)
 
 ## Asennus
 
-1. Lataa reposition, pura paketti ja navigoi komentorivillä kansioon _Blackjack_.
+1. Asenna riippuvuudet komennolla:
 
-2. Jos Pipenv ei ole asennettu, asenna se komennolla:
-```pip3 install --user pipenv```
+```
+python3 -m pipenv install
+```
 
-3. Asenna riippuvuudet komennolla:
-```python3 -m pipenv install```
+2. Käynnistä sovellus komennolla:
 
-4. Käynnistä sovellus komennolla:
-```python3 -m pipenv run start```
+```
+python3 -m pipenv run start
+```
 
 ## Komentorivitoiminnot
 
-### Ohjelman suorittaminen
+#### Ohjelman suorittaminen
 
 Ohjelman pystyy suorittamaan komennolla:
 
-```python3 -m pipenv run start```
+```
+python3 -m pipenv run start
+```
 
-### Testaus
+#### Testaus
 
 Testit suoritetaan komennolla:
 
-```python3 -m pipenv run test```
+```
+python3 -m pipenv run test
+```
 
-### Testikattavuus
+#### Testikattavuus
 
 Testikattavuus kerätään kommenolla:
 
-```python3 -m pipenv run coverage```
+```
+python3 -m pipenv run coverage
+```
 
 Tämän jälkeen raportin voi generoida komennolla:
 
-```python3 -m pipenv run coverage-report```
+```
+python3 -m pipenv run coverage-report
+```
 
 Raportti generoituu _htmlcov_-hakemistoon.
+
+#### Pylint
+
+Tiedoston [.pylintrc](./Blackjack/.pylintrc) määrittelemät koodin laatua tutkivat tarkastukset voi suorittaa komennolla:
+
+```
+python3 -m pipenv run lint
+```
+
+Tällä hetkellä tarkistusten arvosana on `10.00/10`
