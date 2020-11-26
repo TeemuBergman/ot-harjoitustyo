@@ -10,11 +10,11 @@ Sovellus on tehty Helsingin yliopiston Tietojenkäsittelytieteen kurssin Ohjelmi
 Sovellus on testattu Python-versiolla `3.8.6` ja tätä Python-versiota vanhemmilla toimintaa ei voida taata.
 
 ## Dokumentaatio
-- [Käyttöohje](./Blackjack/dokumentaatio/kayttoohje.md)
-- [Vaatimusmäärittely](./Blackjack/dokumentaatio/vaatimusmaarittely.md)
-- [Testausdokumentti](./Blackjack/dokumentaatio/testausdokumentti.md)
-- [Arkkitehtuurikuvaus](./Blackjack/dokumentaatio/arkkitehtuuri.md)
-- [Työaikakirjanpito](työaikakirjanpito.txt)
+- [Käyttöohje](./dokumentaatio/kayttoohje.md)
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+- [Testausdokumentti](./dokumentaatio/testausdokumentti.md)
+- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
+- [Työaikakirjanpito](./dokumentaatio/työaikakirjanpito.txt)
 
 ## Asennus
 
