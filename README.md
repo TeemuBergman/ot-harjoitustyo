@@ -22,7 +22,8 @@ Viikon 5 release löytyy [täältä](https://github.com/TeemuBergman/ot-harjoitu
 
 ## Asennus
 
-1. Asenna riippuvuudet komennolla:
+1. Navigoi sovelluksen kansioon (./Blackjack)
+2. Asenna riippuvuudet komennolla:
 
 ```
 python3 -m pipenv install
