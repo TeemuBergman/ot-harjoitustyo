@@ -1,6 +1,6 @@
 """Here are all the tests for Game class."""
 
-from unittest import TestCase, mock
+from unittest import TestCase
 from game import Game
 
 
@@ -16,30 +16,30 @@ class TestGame(TestCase):
 
     def test_bet_size(self):
         """Bet size is correct on init."""
-        self.assertEqual(self.game.bet_size(), 100)
+        self.assertEqual(self.game.get_bet(), 100)
 
     def test_bet_raise(self):
-        """Bet size is correct on after one raise (+100)."""
+        """Bet size is correct on after one raise (100 -> 200)."""
         self.game.bet_raise()
-        self.assertEqual(self.game.bet_size(), 200)
+        self.assertEqual(self.game.get_bet(), 200)
 
     def test_bet_reduce(self):
-        """Bet size is correct on after one reduce (-100)."""
+        """Bet size is correct on after one reduce (100 -> 100)."""
         self.game.bet_reduce()
-        self.assertEqual(self.game.bet_size(), 0)
+        self.assertEqual(self.game.get_bet(), 100)
 
     def test_player_under_21_status(self):
         """The sum of Players hand is under 21."""
         self.game.player.hand.add_card(self.card_1)
         self.game.player.hand.add_card(self.card_2)
-        self.assertEqual(self.game.check_player_status(), True)
+        self.assertEqual(self.game.get_player_status(), True)
 
     def test_player_blackjack_status(self):
         """The sum of Players hand equals to 21 (blackjack)."""
         self.game.player.hand.add_card(self.card_1)
         self.game.player.hand.add_card(self.card_2)
         self.game.player.hand.add_card(self.card_3)
-        self.assertEqual(self.game.check_player_status(), False)
+        self.assertEqual(self.game.get_player_status(), False)
 
     def test_player_busted_status(self):
         """The sum of Players hand is more than 21 (busted!)."""
@@ -47,25 +47,20 @@ class TestGame(TestCase):
         self.game.player.hand.add_card(self.card_2)
         self.game.player.hand.add_card(self.card_3)
         self.game.player.hand.add_card(self.card_1)
-        self.assertEqual(self.game.check_player_status(), False)
-
-    def test_player_out_of_money(self):
-        """Is Player out of money."""
-        self.game.player.cash_reduce(1000)
-        self.assertEqual(self.game.check_player_status(), 0)
+        self.assertEqual(self.game.get_player_status(), False)
 
     def test_dealer_under_21_status(self):
         """The sum of Dealers hand is under 21."""
         self.game.dealer.hand.add_card(self.card_1)
         self.game.dealer.hand.add_card(self.card_2)
-        self.assertEqual(self.game.check_dealer_status(), True)
+        self.assertEqual(self.game.get_dealer_status(), True)
 
     def test_dealer_blackjack_status(self):
         """The sum of Dealers hand equals to 21 (blackjack)."""
         self.game.dealer.hand.add_card(self.card_1)
         self.game.dealer.hand.add_card(self.card_2)
         self.game.dealer.hand.add_card(self.card_3)
-        self.assertEqual(self.game.check_dealer_status(), False)
+        self.assertEqual(self.game.get_dealer_status(), False)
 
     def test_dealer_busted_status(self):
         """The sum of Dealers hand is more than 21 (busted!)."""
@@ -73,18 +68,4 @@ class TestGame(TestCase):
         self.game.dealer.hand.add_card(self.card_2)
         self.game.dealer.hand.add_card(self.card_3)
         self.game.dealer.hand.add_card(self.card_1)
-        self.assertEqual(self.game.check_dealer_status(), False)
-
-    def test_ace_1(self):
-        """Player gets an ACE and selects value of 1"""
-        original_input = mock.builtins.input
-        mock.builtins.input = lambda _: "1"
-        self.assertEqual(self.game.ace(), 1)
-        mock.builtins.input = original_input
-
-    def test_ace_11(self):
-        """Player gets an ACE and selects value of 11"""
-        original_input = mock.builtins.input
-        mock.builtins.input = lambda _: "11"
-        self.assertEqual(self.game.ace(), 11)
-        mock.builtins.input = original_input
+        self.assertEqual(self.game.get_dealer_status(), False)

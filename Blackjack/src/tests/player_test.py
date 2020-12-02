@@ -13,7 +13,7 @@ class TestPlayer(TestCase):
 
     def test_player_name(self):
         """Test if Player gets its name right on init."""
-        self.assertEqual(self.player.get_player_name(), "TestPlayer")
+        self.assertEqual(self.player.get_name(), "TestPlayer")
 
     def test_cash_balance(self):
         """Check that player has a right cash balance on init."""
