@@ -40,7 +40,7 @@ class Game:
                 # Player options
                 print("Cash balance:", self.player.get_cash_balance(),
                       "€ Current bet:", self.get_bet())
-                ans = input("(d)eal new hand or modify bet: (+)100, (-)100. (q)uit: ").lower()
+                ans = input("(d)eal a new hand or modify bet: (+)100, (-)100. (q)uit: ").lower()
                 if ans == "d":
                     break
                 if ans == "+":
