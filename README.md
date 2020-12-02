@@ -29,11 +29,13 @@ Viikon 5 release löytyy [täältä](https://github.com/TeemuBergman/ot-harjoitu
 python3 -m pipenv install
 ```
 
-2. Käynnistä sovellus komennolla:
+3. Käynnistä sovellus komennolla:
 
 ```
 python3 -m pipenv run start
 ```
+
+4. Katso pelin komennot [käyttöohje](./dokumentaatio/kayttoohje.md) tiedostosta.
 
 ## Komentorivitoiminnot
 
