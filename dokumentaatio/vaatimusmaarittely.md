@@ -6,8 +6,17 @@ Alkuvaiheessa pelaajia voi olla vain yksi talon jakajaa vastaan. Moninpelin mahd
 ## Käyttöliittymä
 Ensimmäinen hahmotelma käyttöliittymästä
 ![käyttöliittymä](kayttoliittyma.jpg)
+
 ## Perusversion toiminnallisuudet
-- Mahdollisuus pelata Blackjack korttipeliä
+- Mahdollisuus pelata Blackjack korttipeliä (muutamaa toiminnallisuutta lukuun ottamatta valmis).
+- Jakaja toimii Blackjackin sääntöjen mukaisesti (tehty).
+- Kun pelaajan tai jakajan käteen tulee ässä, sillä on dynaaminen vaikutus käden pisteisiin (tehty).
+- Kun luodaan uusi shoe, se katkaistaan cut card:lla, joka asetetaan shoen viimeisten 60-75 kortin väliin. (tehty).
+- Panoksen kasvattaminen ja pienentäminen. (100-500 €) (tehty) .
+- Käden jakaminen, eli "split"  (ei valmis).
+- Panoksen tuplaus (ei valmis).
+- Käyttäjän rekisteröinti ja kirjautuminen (ei valmis).
+- Graafinen käyttöliittymä "GUI" (ei valmis).
 ## Jatkokehitysideat
 Ensimmäisen version jälkeen ohjelmistoa voi laajentaa esimerkiksi:
 - Moninpelillä muutaman kaverin kanssa.

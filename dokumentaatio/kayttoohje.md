@@ -18,6 +18,7 @@ python3 -m pipenv run start
 Seuraa komentoriville ilmestyviä ohjeita.
 
 ### Näppäinkomennot
-- D - Jaa uusi kortti
-- S - Jatka vuoroasi seuraavalle
-- Q - Lopeta sovellus
+- +/- Muuta panoksen kokoa
+- d - Aloita uusi peli / jaa uusi kortti
+- s - Luovuta vuorosi jakajalle
+- q - Lopeta sovellus
