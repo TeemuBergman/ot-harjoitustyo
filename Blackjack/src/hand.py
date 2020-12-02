@@ -2,7 +2,7 @@
 
 
 class Hand:
-    """Hand class contains values for current hands and possibility to split hand."""
+    """Hand class contains card values for the current hand and possibility to split hand."""
 
     def __init__(self):
         """Initialize two hands for Player."""
@@ -22,6 +22,12 @@ class Hand:
                 return sum(self.hand_right)
         self.hand.append(card)
         return sum(self.hand)
+
+    def check_for_blackjack(self):
+        """Check if Player object has a blackjack."""
+        if 1 in self.hand and 10 in self.hand:
+            return True
+        return False
 
     def split_available(self):
         """Are the first two cards same value?"""
@@ -43,7 +49,11 @@ class Hand:
 
     def get_sum_of_cards(self):
         """Return sum of every card in Player's hand."""
-        return sum(self.hand)
+        total = sum(self.hand)
+        # Check if there is an ACE in hand and sum of cards is <= 11.
+        if 1 in self.hand and total <= 11:
+            return total + 10
+        return total
 
     def clear_hand(self):
         """In beginning of a new hand, clear out old cards."""

@@ -25,13 +25,19 @@ class Player:
         self.cash -= bet * 100
         return self.get_cash_balance()
 
-    def get_player_name(self):
+    def get_name(self):
         """Get Player name"""
         return self.name
 
-    def ingame_status(self):
-        """Return Player's status as a tuple.
+    def busted(self):
+        """Check that player has under 21 points"""
+        if self.hand.get_sum_of_cards() < 21:
+            return False
+        return True
+
+    def get_info(self):
+        """Return Player's get_info as a tuple.
         Tuple contains: Player's name, sum of cards,
         all the cards and cash balance."""
-        return [self.get_player_name(), self.hand.get_sum_of_cards(), self.hand.get_all_cards()], \
+        return [self.get_name(), self.hand.get_sum_of_cards(), self.hand.get_all_cards()], \
                ["Cash balance:", self.get_cash_balance(), "€"]

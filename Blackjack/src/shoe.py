@@ -10,22 +10,22 @@ class Shoe:
     def __init__(self):
         self.shoe = []
         self.cut_card = 0
-        self.create_shoe()
+        self.__create_shoe()
 
-    def create_shoe(self):
-        """Create a Shoe and place a "cut card" somewhere in the last quarter of Shoe."""
+    def __create_shoe(self):
+        """Create a Shoe and place a "cut card" between cards 237-252."""
         for _ in range(6):
             for _ in range(4):
                 for card in range(13):
                     self.shoe.append(card + 1)
         random.shuffle(self.shoe)
-        self.cut_card = random.randrange(0, 78)
+        self.cut_card = random.randrange(60, 75)
 
     def get_card(self):
         """Get one card from Shoe."""
         if len(self.shoe) == self.cut_card:
             print("SHUFFLING DECK")
-            self.create_shoe()
+            self.__create_shoe()
         card = self.shoe.pop()
         if card > 10:
             card = 10

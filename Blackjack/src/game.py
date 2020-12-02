@@ -13,8 +13,8 @@ class Game:
         self.shoe = Shoe()
         self.dealer = Player("Dealer", 1000000)
         self.player = Player("Player", 1000)
-        self.bet = 100
-        self.game_status = True
+        self.bet = 100.0
+        self.game_over = False
 
     def main_game(self):
         """Main loop of the game."""
@@ -22,123 +22,138 @@ class Game:
             print("P R O -----------")
             print("B L A C K J A C K")
             print("--------- 2 0 2 0")
-            print(self.player.ingame_status()[1], "\n")
-            self.clear_table()
-            self.set_player_cards()
-            if self.game_status:
-                self.set_dealer_cards()
+            self.start_options()
+            self.deal_first_cards()
+            self.deal_player_cards()
+            self.deal_dealer_cards()
 
-    def clear_table(self):
-        """Clear table before start of a new hand."""
-        self.game_status = True
-        # Clear Dealers and Players hand.
-        self.player.hand.clear_hand()
-        # Deal one card to Dealer.
-        self.dealer.hand.clear_hand()
-        self.deal_to_dealer()
+    def start_options(self):
+        """Give Player some options before next hand."""
+        # Reset game status
+        self.game_over = False
+        # Options menu
+        while True:
+            if self.player.get_cash_balance() >= 100:
+                # Cap bet size to player cash balance
+                if self.bet > self.player.get_cash_balance():
+                    self.bet = self.player.get_cash_balance()
+                # Player options
+                print("Cash balance:", self.player.get_cash_balance(),
+                      "€ Current bet:", self.get_bet())
+                ans = input("(d)eal new hand or modify bet: (+)100, (-)100. (q)uit: ").lower()
+                if ans == "d":
+                    break
+                elif ans == "+":
+                    self.bet_raise()
+                elif ans == "-":
+                    self.bet_reduce()
+                elif ans == "q":
+                    sys.exit()
+            else:
+                print("GAME OVER")
+                sys.exit()
 
-    def bet_size(self):
+    def get_bet(self):
         """Returns current bet size."""
         return self.bet
 
     def bet_raise(self):
-        """Raises bet by 100."""
-        self.bet += 100
+        """Raises bet by 100. Max = 500"""
+        if self.get_bet() < 500:
+            self.bet += 100
 
     def bet_reduce(self):
-        """Reduces bet by 100."""
-        self.bet -= 100
+        """Reduces bet by 100. Min = 100"""
+        if self.get_bet() >= 200:
+            self.bet -= 100
 
-    def set_player_cards(self):
-        """Loop for dealing Players cards and giving options during one hand."""
-        # Deal first two cards.
+    def deal_first_cards(self):
+        """Reset table for a new hand and deal first two cards to Dealer and Player."""
+        # Clear Dealers and Players hand.
+        self.player.hand.clear_hand()
+        self.dealer.hand.clear_hand()
+        # Deal two cards to Dealer and Player
         for _ in range(2):
-            self.deal_to_player()
-        # Check if the first two cards are same value.
-        self.player.hand.split_available()
-        # Player makes a decision.
-        while self.check_player_status():
-            print(self.player.ingame_status()[0])
-            ans = input("(D)eal, (S)tay or (Q)uit: ").upper()
-            if ans == "D":
-                self.deal_to_player()
-            elif ans == "S":
+            self.dealer.hand.add_card(self.shoe.get_card())
+            self.player.hand.add_card(self.shoe.get_card())
+        # Check for blackjack
+        if self.player.hand.check_for_blackjack() and not self.dealer.hand.check_for_blackjack():
+            # Player got blackjack
+            self.get_player_status()
+        if self.dealer.hand.check_for_blackjack() and not self.player.hand.check_for_blackjack():
+            # Dealer got blackjack
+            self.get_dealer_status()
+        if self.player.hand.check_for_blackjack() and self.dealer.hand.check_for_blackjack():
+            # Both got blackjack
+            self.get_dealer_status()
+        # Check if Players first two cards are the same value.
+        if self.player.hand.split_available():
+            # self.player.hand.split_hand()
+            pass
+
+    def deal_player_cards(self):
+        """Deal players cards and give options."""
+        # Players main loop
+        while not self.game_over and not self.player.busted():
+            print("Player's hand:", self.player.hand.get_sum_of_cards(), self.player.hand.get_all_cards())
+            ans = input("(d)eal, (s)tay or (q)uit: ").lower()
+            if ans == "d":
+                self.player.hand.add_card(self.shoe.get_card())
+                self.get_player_status()
+            elif ans == "s":
                 return False
-            elif ans == "Q":
+            elif ans == "q":
                 sys.exit()
 
-    def deal_to_player(self):
-        """Deal one card to player and check if it's an ACE."""
-        card = self.shoe.get_card()
-        if card == 1:
-            card = self.ace()
-        self.player.hand.add_card(card)
-
-    def check_player_status(self):
-        """Check the status of player during one hand."""
+    def get_player_status(self):
+        """Check the get_info of player during one hand."""
         cards_sum = self.player.hand.get_sum_of_cards()
-        if self.player.get_cash_balance() < self.bet:
-            print("OUT OF CASH!")
-            self.game_status = False
-            return False
         if cards_sum > 21:
             self.player.cash_reduce(self.bet)
-            self.game_status = False
-            print("YOU BUSTED!\n", self.player.ingame_status(), "\n")
+            self.game_over = True
+            self.print_status("PLAYER BUSTED!", self.player)
             return False
         if cards_sum == 21:
+            self.game_over = True
             self.player.cash_add(self.bet * 1.5)
-            self.game_status = False
-            print("\n", "YOU GOT BLACKJACK!\n", self.player.ingame_status(), "\n")
+            self.print_status("PLAYER GOT 21!", self.player)
             return False
         return True
 
-    def set_dealer_cards(self):
-        """Set cards to dealer while checking dealers hand status."""
-        while self.check_dealer_status():
-            self.deal_to_dealer()
+    def deal_dealer_cards(self):
+        """Set cards to dealer while checking dealers hand get_info."""
+        while not self.game_over and not self.player.busted():
+            self.get_dealer_status()
+            print("Dealer's hand:", self.dealer.hand.get_sum_of_cards(), "pts", self.dealer.hand.get_all_cards())
+            self.dealer.hand.add_card(self.shoe.get_card())
 
-    def check_dealer_status(self):
-        """Check the status of dealers hand."""
+    def get_dealer_status(self):
+        """Check the get_info of dealers hand."""
         player_sum = self.player.hand.get_sum_of_cards()
         dealer_sum = self.dealer.hand.get_sum_of_cards()
         if dealer_sum > 21:
+            self.game_over = True
             self.player.cash_add(self.bet)
-            print("DEALER BUSTED!", self.dealer.ingame_status()[0], "\n")
+            self.print_status("DEALER BUSTED!", self.dealer)
             return False
         if dealer_sum == 21:
+            self.game_over = True
             self.player.cash_reduce(self.bet)
-            print("DEALER GOT BLACKJACK!", self.dealer.ingame_status()[0], "\n")
+            self.print_status("DEALER GOT 21!", self.dealer)
             return False
-        if dealer_sum >= 17 and dealer_sum == player_sum:
-            print("ITS A TIE!", self.dealer.ingame_status()[0], "\n")
-            return False
-        if dealer_sum >= 17 >= dealer_sum > player_sum:
-            self.player.cash_reduce(self.bet)
-            print("DEALER WON!", self.dealer.ingame_status()[0], "\n")
-            return False
-        if 17 <= dealer_sum < player_sum:
-            self.player.cash_add(self.bet)
-            print("PLAYER WON!", self.dealer.ingame_status()[0], "\n")
+        if dealer_sum >= 17:
+            if dealer_sum == player_sum:
+                self.print_status("IT'S A TIE!", self.player)
+            if dealer_sum > player_sum:
+                self.player.cash_reduce(self.bet)
+                self.print_status("DEALER WON!", self.dealer)
+            if dealer_sum < player_sum:
+                self.player.cash_add(self.bet)
+                self.print_status("PLAYER WON!", self.player)
+            self.game_over = True
             return False
         return True
 
-    def deal_to_dealer(self):
-        """Deal cards to dealer and check if dealer got an ACE."""
-        card = self.shoe.get_card()
-        if card == 1 and self.dealer.hand.get_sum_of_cards() <= 10:
-            card = 11
-        self.dealer.hand.add_card(card)
-        print(self.dealer.ingame_status()[0])
-
-    def ace(self):
-        """Give player an option to choose if they got an ACE"""
-        print(self.player.ingame_status())
-        selection = input("You got an ACE, select 1 or 11?")
-        if selection == "11":
-            return 11
-        return 1
-
-    def get_cash_stats(self):
-        """Print players cash balance and current bet."""
-        print("BANK:", self.player.get_cash_balance() - self.bet, "€ CURRENT BET:", self.bet, "€")
+    def print_status(self, message, player):
+        """Print Player status."""
+        print("\n" + message, player.get_name() + "'s hand:", player.hand.get_sum_of_cards(), "pts", player.hand.get_all_cards(), "\n")
