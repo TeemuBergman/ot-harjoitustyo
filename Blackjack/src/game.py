@@ -43,11 +43,11 @@ class Game:
                 ans = input("(d)eal new hand or modify bet: (+)100, (-)100. (q)uit: ").lower()
                 if ans == "d":
                     break
-                elif ans == "+":
+                if ans == "+":
                     self.bet_raise()
-                elif ans == "-":
+                if ans == "-":
                     self.bet_reduce()
-                elif ans == "q":
+                if ans == "q":
                     sys.exit()
             else:
                 print("GAME OVER")
@@ -95,14 +95,16 @@ class Game:
         """Deal players cards and give options."""
         # Players main loop
         while not self.game_over and not self.player.busted():
-            print("Player's hand:", self.player.hand.get_sum_of_cards(), self.player.hand.get_all_cards())
+            print("Player's hand:",
+                  self.player.hand.get_sum_of_cards(),
+                  self.player.hand.get_all_cards())
             ans = input("(d)eal, (s)tay or (q)uit: ").lower()
             if ans == "d":
                 self.player.hand.add_card(self.shoe.get_card())
                 self.get_player_status()
-            elif ans == "s":
+            if ans == "s":
                 return False
-            elif ans == "q":
+            if ans == "q":
                 sys.exit()
 
     def get_player_status(self):
@@ -124,7 +126,8 @@ class Game:
         """Set cards to dealer while checking dealers hand get_info."""
         while not self.game_over and not self.player.busted():
             self.get_dealer_status()
-            print("Dealer's hand:", self.dealer.hand.get_sum_of_cards(), "pts", self.dealer.hand.get_all_cards())
+            print("Dealer's hand:", self.dealer.hand.get_sum_of_cards(),
+                  "pts", self.dealer.hand.get_all_cards())
             self.dealer.hand.add_card(self.shoe.get_card())
 
     def get_dealer_status(self):
@@ -156,4 +159,6 @@ class Game:
 
     def print_status(self, message, player):
         """Print Player status."""
-        print("\n" + message, player.get_name() + "'s hand:", player.hand.get_sum_of_cards(), "pts", player.hand.get_all_cards(), "\n")
+        print("\n" + message, player.get_name() + "'s hand:",
+              player.hand.get_sum_of_cards(), "pts",
+              player.hand.get_all_cards(), "\n")
