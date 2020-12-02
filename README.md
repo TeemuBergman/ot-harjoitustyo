@@ -9,6 +9,10 @@ Sovellus on tehty Helsingin yliopiston Tietojenkäsittelytieteen kurssin Ohjelmi
 ## Python-versio
 Sovellus on testattu Python-versiolla `3.8.6` ja tätä Python-versiota vanhemmilla toimintaa ei voida taata.
 
+## Release
+
+Viikon 5 release löytyy [täältä](https://github.com/TeemuBergman/ot-harjoitustyo/releases/tag/viikko5).
+
 ## Dokumentaatio
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
