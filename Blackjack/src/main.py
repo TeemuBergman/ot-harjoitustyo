@@ -1,6 +1,9 @@
-"""This where the game is started."""
+""" main.py
 
-from game import Game
+    This where the game is started.
+    """
+
+from entities.game import Game
 
 if __name__ == "__main__":
     game = Game()

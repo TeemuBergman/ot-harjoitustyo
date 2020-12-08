@@ -1,15 +1,20 @@
-"""Blackjack games logic."""
+""" game.py
+
+    Blackjack games logic.
+    """
 
 import sys
-from player import Player
-from shoe import Shoe
+from entities.player import Player
+from entities.shoe import Shoe
+from ui.cli_ui import Ui
 
 
 class Game:
-    """Blackjack games main Game class. This contains all logic for house dealer and player."""
+    """Blackjack games main Game entities. This contains all logic for house dealer and player."""
 
     def __init__(self):
         """Init Game"""
+        self.ui = Ui()
         self.shoe = Shoe()
         self.dealer = Player("Dealer", 1000000)
         self.player = Player("Player", 1000)
@@ -19,9 +24,7 @@ class Game:
     def main_game(self):
         """Main loop of the game."""
         while True:
-            print("P R O -----------")
-            print("B L A C K J A C K")
-            print("--------- 2 0 2 0")
+            self.ui.title()
             self.start_options()
             self.deal_first_cards()
             self.deal_player_cards()
@@ -38,9 +41,8 @@ class Game:
                 if self.bet > self.player.get_cash_balance():
                     self.bet = self.player.get_cash_balance()
                 # Player options
-                print("Cash balance:", self.player.get_cash_balance(),
-                      "€ Current bet:", self.get_bet())
-                ans = input("(d)eal a new hand or modify bet: (+)100, (-)100. (q)uit: ").lower()
+                self.ui.player_status(self.player, self.bet)
+                ans = self.ui.player_select()
                 if ans == "d":
                     break
                 if ans == "+":
@@ -50,7 +52,7 @@ class Game:
                 if ans == "q":
                     sys.exit()
             else:
-                print("GAME OVER")
+                self.ui.game_over()
                 sys.exit()
 
     def get_bet(self):
@@ -95,10 +97,8 @@ class Game:
         """Deal players cards and give options."""
         # Players main loop
         while not self.game_over and not self.player.busted():
-            print("Player's hand:",
-                  self.player.hand.get_sum_of_cards(),
-                  self.player.hand.get_all_cards())
-            ans = input("(d)eal, (s)tay or (q)uit: ").lower()
+            self.ui.player_status_during_hand(self.player)
+            ans = self.ui.player_select_during_hand()
             if ans == "d":
                 self.player.hand.add_card(self.shoe.get_card())
                 self.get_player_status()
@@ -113,12 +113,12 @@ class Game:
         if cards_sum > 21:
             self.player.cash_reduce(self.bet)
             self.game_over = True
-            self.print_status("PLAYER BUSTED!", self.player)
+            self.ui.status_player_busted(self.player)
             return False
         if cards_sum == 21:
             self.game_over = True
             self.player.cash_add(self.bet * 1.5)
-            self.print_status("PLAYER GOT 21!", self.player)
+            self.ui.status_player_got_21(self.player)
             return False
         return True
 
@@ -126,8 +126,7 @@ class Game:
         """Set cards to dealer while checking dealers hand get_info."""
         while not self.game_over and not self.player.busted():
             self.get_dealer_status()
-            print("Dealer's hand:", self.dealer.hand.get_sum_of_cards(),
-                  "pts", self.dealer.hand.get_all_cards())
+            self.ui.dealer_status(self.dealer)
             self.dealer.hand.add_card(self.shoe.get_card())
 
     def get_dealer_status(self):
@@ -137,28 +136,22 @@ class Game:
         if dealer_sum > 21:
             self.game_over = True
             self.player.cash_add(self.bet)
-            self.print_status("DEALER BUSTED!", self.dealer)
+            self.ui.status_player_busted(self.dealer)
             return False
         if dealer_sum == 21:
             self.game_over = True
             self.player.cash_reduce(self.bet)
-            self.print_status("DEALER GOT 21!", self.dealer)
+            self.ui.status_player_got_21(self.dealer)
             return False
         if dealer_sum >= 17:
             if dealer_sum == player_sum:
-                self.print_status("IT'S A TIE!", self.player)
+                self.ui.status_its_a_tie(self.player)
             if dealer_sum > player_sum:
                 self.player.cash_reduce(self.bet)
-                self.print_status("DEALER WON!", self.dealer)
+                self.ui.status_won(self.dealer)
             if dealer_sum < player_sum:
                 self.player.cash_add(self.bet)
-                self.print_status("PLAYER WON!", self.player)
+                self.ui.status_won(self.player)
             self.game_over = True
             return False
         return True
-
-    def print_status(self, message, player):
-        """Print Player status."""
-        print("\n" + message, player.get_name() + "'s hand:",
-              player.hand.get_sum_of_cards(), "pts",
-              player.hand.get_all_cards(), "\n")

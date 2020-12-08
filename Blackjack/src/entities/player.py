@@ -1,6 +1,9 @@
-"""This is where dealer and every player in blackjack table get initialized."""
+""" player.py
 
-from hand import Hand
+    This is where dealer and every player in blackjack table get initialized.
+    """
+
+from entities.hand import Hand
 
 
 class Player:
@@ -34,10 +37,3 @@ class Player:
         if self.hand.get_sum_of_cards() < 21:
             return False
         return True
-
-    def get_info(self):
-        """Return Player's get_info as a tuple.
-        Tuple contains: Player's name, sum of cards,
-        all the cards and cash balance."""
-        return [self.get_name(), self.hand.get_sum_of_cards(), self.hand.get_all_cards()], \
-               ["Cash balance:", self.get_cash_balance(), "€"]

@@ -1,8 +1,11 @@
-"""Hand class for every played hand."""
+""" hand.py
+
+    Hand entities for every played hand.
+    """
 
 
 class Hand:
-    """Hand class contains card values for the current hand and possibility to split hand."""
+    """Hand entities contains card values for the current hand and possibility to split hand."""
 
     def __init__(self):
         """Initialize two hands for Player."""

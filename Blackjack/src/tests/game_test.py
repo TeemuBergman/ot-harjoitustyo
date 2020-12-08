@@ -1,14 +1,17 @@
-"""Here are all the tests for Game class."""
+"""game_test.py
+
+    Here are all the tests for Game entities.
+    """
 
 from unittest import TestCase
-from game import Game
+from entities.game import Game
 
 
 class TestGame(TestCase):
-    """TestGame class for all Game class tests."""
+    """TestGame entities for all Game entities tests."""
 
     def setUp(self):
-        """Init for Game class tests"""
+        """Init for Game entities tests"""
         self.game = Game()
         self.card_1 = 7
         self.card_2 = 4

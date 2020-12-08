@@ -1,14 +1,17 @@
-"""Here are all the tests for Player class."""
+"""player_test.py
+
+    Here are all the tests for Player entities.
+    """
 
 from unittest import TestCase
-from player import Player
+from entities.player import Player
 
 
 class TestPlayer(TestCase):
-    """TestPlayer class for all Player class tests."""
+    """TestPlayer entities for all Player entities tests."""
 
     def setUp(self):
-        """Init for Player class tests"""
+        """Init for Player entities tests"""
         self.player = Player("TestPlayer", 1000)
 
     def test_player_name(self):

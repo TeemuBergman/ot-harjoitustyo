@@ -1,14 +1,17 @@
-"""Here are all the tests for Shoe class."""
+"""shoe_test.py
+
+    Here are all the tests for Shoe entities.
+    """
 
 from unittest import TestCase
-from shoe import Shoe
+from entities.shoe import Shoe
 
 
 class TestShoe(TestCase):
-    """TestShoe class for all Shoe class tests."""
+    """TestShoe entities for all Shoe entities tests."""
 
     def setUp(self):
-        """Init for Shoe class tests"""
+        """Init for Shoe entities tests"""
         self.shoe = Shoe()
 
     def test_create_shoe(self):

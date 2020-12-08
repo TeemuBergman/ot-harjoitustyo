@@ -1,13 +1,18 @@
-""""In Blackjack shoe is a combination of 6 card decks of 52 cards, total of 312 cards.
-    Point where shoe will be resuffled is marked by the cut card."""
+""" shoe.py
+
+    In Blackjack shoe is a combination of 6 card decks of 52 cards, total of 312 cards.
+    Point where shoe will be resuffled is marked by the cut card.
+    """
 
 import random
+from ui.cli_ui import Ui
 
 
 class Shoe:
-    """Shoe class and its functionality."""
+    """Shoe entities and its functionality."""
 
     def __init__(self):
+        self.ui = Ui()
         self.shoe = []
         self.cut_card = 0
         self.__create_shoe()
@@ -24,7 +29,7 @@ class Shoe:
     def get_card(self):
         """Get one card from Shoe."""
         if len(self.shoe) == self.cut_card:
-            print("SHUFFLING DECK")
+            self.ui.shuffling_deck()
             self.__create_shoe()
         card = self.shoe.pop()
         if card > 10:
