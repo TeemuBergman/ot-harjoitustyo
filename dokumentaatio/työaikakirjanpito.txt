@@ -20,6 +20,9 @@
  30.11. 2		Tietokannan luominen build.py tiedoston kautta
  01.12. 4		Koodin refaktointia
  02.12. 4		Uusien ominaisuuksien ohjelmointia sekä koodin refaktointia
+ 07.12.	1		Koodin refaktointia ja docstringien kirjoittamista
+ 08.12.	1		Koodin refaktointia ja docstringien kirjoittamista
+ 08.12.	2		Tietokantatoiminnallisuuden ohjelmointia
  
  yht    44
  
