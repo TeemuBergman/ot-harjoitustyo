@@ -5,8 +5,9 @@ name = "pypi"
 
 [scripts]
 build = "python3 src/build.py"
-start = "python3 src/main.py"
+start = "python3 src/index.py"
 test = "pytest"
+test-s = "pytest -s"
 coverage = "coverage run --branch -m pytest src"
 coverage-report = "coverage html"
 lint = "pylint src"
@@ -15,5 +16,6 @@ lint = "pylint src"
 pytest = "*"
 coverage = "*"
 pylint = "*"
+colorama = "*"
 
 [dev-packages]
