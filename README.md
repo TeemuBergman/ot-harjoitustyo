@@ -12,6 +12,8 @@ Sovellus on tehty Helsingin yliopiston Tietojenkäsittelytieteen kurssin Ohjelmi
 Sovellus on testattu Python-versiolla `3.8.6` ja tätä Python-versiota vanhemmilla toimintaa ei voida taata.
 
 ## Release
+Viikon 7 release löytyy [täältä](https://github.com/TeemuBergman/ot-harjoitustyo/releases/tag/viikko7).
+
 Viikon 6 release löytyy [täältä](https://github.com/TeemuBergman/ot-harjoitustyo/releases/tag/viikko6).
 
 Viikon 5 release löytyy [täältä](https://github.com/TeemuBergman/ot-harjoitustyo/releases/tag/viikko5).
