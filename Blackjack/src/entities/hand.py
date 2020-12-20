@@ -3,65 +3,48 @@
     Hand entities for every played hand.
     """
 
+from collections import defaultdict
 
 class Hand:
     """Hand entities contains card values for the current hand and possibility to split hand."""
 
     def __init__(self):
-        """Initialize two hands for Player."""
-        self.hand = []
-        self.hand_splitted = False
-        self.hand_left = []
-        self.hand_right = []
+        """ Class constructor that creates Players hand to hold the cards in.
 
-    def add_card(self, card, hand = None):
+            self.hand_num[0] = all hand_num in hand
+            self.hand_num[1] = left hand after split
+            self.hand_num[2] = right hand after split
+            """
+        self.cards = defaultdict(list)
+        self.hand_split = False
+
+    def add_card(self, card, hand = 0):
         """Add card to Player's hand."""
-        if self.hand_splitted:
-            if hand == "left":
-                self.hand_left.append(card)
-                return sum(self.hand_left)
-            if hand == "right":
-                self.hand_right.append(card)
-                return sum(self.hand_right)
-        self.hand.append(card)
-        return sum(self.hand)
+        self.cards[hand].append(card)
+        return sum(self.cards[hand])
 
-    def check_for_blackjack(self):
-        """Check if Player object has a blackjack."""
-        if 1 in self.hand and 10 in self.hand:
+    def check_for_split(self):
+        """ Are the first two hand_num same value? """
+        if self.cards[0][0] == self.cards[0][1]:
             return True
         return False
 
-    def split_available(self):
-        """Are the first two cards same value?"""
-        if self.hand[0] == self.hand[1]:
-            return True
-        return False
+    def split(self):
+        """Split players hand in to two different hands."""
+        self.hand_split = True
+        self.cards[1].append(self.cards[0].pop())
+        self.cards[2].append(self.cards[0].pop())
 
-    def split_hand(self):
-        """If Player gets first two cards of the same value,
-        it can be split to two different hands."""
-        self.hand_splitted = True
-        self.hand_left.append(self.hand[0])
-        self.hand_right.append(self.hand[1])
-        return self.hand_left[0], self.hand_right[0]
-
-    def get_all_cards(self):
-        """Return every card in Player's hand."""
-        return self.hand
-
-    def get_sum_of_cards(self):
-        """Return sum of every card in Player's hand."""
-        total = sum(self.hand)
-        # Check if there is an ACE in hand and sum of cards is <= 11.
-        if 1 in self.hand and total <= 11:
+    def get_sum_of_cards(self, hand = 0):
+        """ Return sum of hand_num in given hand. """
+        total = sum(self.cards[hand])
+        # Check if there is an ACE in hand and sum of hand_num is <= 11.
+        if 1 in self.cards[hand] and total <= 11:
             return total + 10
         return total
 
     def clear_hand(self):
-        """In beginning of a new hand, clear out old cards."""
-        self.hand_splitted = False
-        self.hand.clear()
-        self.hand_left.clear()
-        self.hand_right.clear()
-        return self.hand, self.hand_left, self.hand_right
+        """ In beginning of a new hand, clear out old hand_num. """
+        self.hand_split = False
+        self.cards.clear()
+        return self.cards[0]

@@ -1,157 +1,191 @@
 """ game.py
 
-    Blackjack games logic.
+    Blackjack game logic.
     """
 
 import sys
 from entities.player import Player
 from entities.shoe import Shoe
-from ui.cli_ui import Ui
+from entities.bank import Bank
+from ui.ui_cli import Ui
 
 
 class Game:
     """Blackjack games main Game entities. This contains all logic for house dealer and player."""
 
     def __init__(self):
-        """Init Game"""
-        self.ui = Ui()
+        self.ui_cli = Ui()
+        self.bank = Bank()
         self.shoe = Shoe()
-        self.dealer = Player("Dealer", 1000000)
-        self.player = Player("Player", 1000)
-        self.bet = 100.0
-        self.game_over = False
+        self.dealer = Player("Dealer")
+        self.player = Player("Player")
+        self.players_turn = True
+        self.running = True
 
     def main_game(self):
         """Main loop of the game."""
+        self.ui_cli.title()
         while True:
-            self.ui.title()
             self.start_options()
             self.deal_first_cards()
-            self.deal_player_cards()
-            self.deal_dealer_cards()
+            if self.running and self.players_turn:
+                self.player_deal_cards()
+            if self.running:
+                self.dealer_deal_cards()
+            self.ui_cli.play_again()
 
     def start_options(self):
         """Give Player some options before next hand."""
-        # Reset game status
-        self.game_over = False
+        # Reset status
+        self.players_turn = True
+        self.running = True
         # Options menu
         while True:
-            if self.player.get_cash_balance() >= 100:
-                # Cap bet size to player cash balance
-                if self.bet > self.player.get_cash_balance():
-                    self.bet = self.player.get_cash_balance()
+            if self.player.cash_balance >= self.bank.min_bet:
+                # Check and cap bet size
+                self.bank.bet_cap(self.player)
                 # Player options
-                self.ui.player_status(self.player, self.bet)
-                ans = self.ui.player_select()
+                self.ui_cli.player_cash_balance(self.player, self.bank.current_bet)
+                ans = self.ui_cli.player_selection_start()
                 if ans == "d":
                     break
                 if ans == "+":
-                    self.bet_raise()
+                    self.bank.bet_raise()
                 if ans == "-":
-                    self.bet_reduce()
+                    self.bank.bet_reduce()
                 if ans == "q":
                     sys.exit()
             else:
-                self.ui.game_over()
+                self.ui_cli.game_over()
                 sys.exit()
-
-    def get_bet(self):
-        """Returns current bet size."""
-        return self.bet
-
-    def bet_raise(self):
-        """Raises bet by 100. Max = 500"""
-        if self.get_bet() < 500:
-            self.bet += 100
-
-    def bet_reduce(self):
-        """Reduces bet by 100. Min = 100"""
-        if self.get_bet() >= 200:
-            self.bet -= 100
 
     def deal_first_cards(self):
-        """Reset table for a new hand and deal first two cards to Dealer and Player."""
-        # Clear Dealers and Players hand.
+        """Reset table for a new hand and deal first two hand_num to Dealer and Player."""
+        # Clear Dealers and Players previous hands.
         self.player.hand.clear_hand()
         self.dealer.hand.clear_hand()
-        # Deal two cards to Dealer and Player
+        # Deal two cards to Player and Dealer.
+        self.ui_cli.new_hand()
         for _ in range(2):
-            self.dealer.hand.add_card(self.shoe.get_card())
             self.player.hand.add_card(self.shoe.get_card())
-        # Check for blackjack
-        if self.player.hand.check_for_blackjack() and not self.dealer.hand.check_for_blackjack():
-            # Player got blackjack
-            self.get_player_status()
-        if self.dealer.hand.check_for_blackjack() and not self.player.hand.check_for_blackjack():
-            # Dealer got blackjack
-            self.get_dealer_status()
-        if self.player.hand.check_for_blackjack() and self.dealer.hand.check_for_blackjack():
-            # Both got blackjack
-            self.get_dealer_status()
-        # Check if Players first two cards are the same value.
-        if self.player.hand.split_available():
-            # self.player.hand.split_hand()
-            pass
-
-    def deal_player_cards(self):
-        """Deal players cards and give options."""
-        # Players main loop
-        while not self.game_over and not self.player.busted():
-            self.ui.player_status_during_hand(self.player)
-            ans = self.ui.player_select_during_hand()
-            if ans == "d":
-                self.player.hand.add_card(self.shoe.get_card())
-                self.get_player_status()
-            if ans == "s":
-                return False
-            if ans == "q":
-                sys.exit()
-
-    def get_player_status(self):
-        """Check the get_info of player during one hand."""
-        cards_sum = self.player.hand.get_sum_of_cards()
-        if cards_sum > 21:
-            self.player.cash_reduce(self.bet)
-            self.game_over = True
-            self.ui.status_player_busted(self.player)
-            return False
-        if cards_sum == 21:
-            self.game_over = True
-            self.player.cash_add(self.bet * 1.5)
-            self.ui.status_player_got_21(self.player)
-            return False
-        return True
-
-    def deal_dealer_cards(self):
-        """Set cards to dealer while checking dealers hand get_info."""
-        while not self.game_over and not self.player.busted():
-            self.get_dealer_status()
-            self.ui.dealer_status(self.dealer)
             self.dealer.hand.add_card(self.shoe.get_card())
+        self.ui_cli.dealer_top_card(self.dealer)
+        # Check for player blackjack
+        if self.check_for_blackjack(self.player):
+            self.running = False
+            self.player.cash_add(self.bank.current_bet * 1.5)
+            self.ui_cli.player_blackjack(self.player, self.bank.current_bet)
+            return
+        # Check if Players first two hand_num are the same value.
+        if self.player.hand.check_for_split():
+            if self.player.cash_balance >= (self.bank.current_bet * 2):
+                self.player_split_hand()
+            else:
+                self.ui_cli.player_no_cash_for_split(self.player, self.bank.current_bet)
 
-    def get_dealer_status(self):
-        """Check the get_info of dealers hand."""
-        player_sum = self.player.hand.get_sum_of_cards()
+    def player_split_hand(self):
+        """Split Players hand."""
+        ans = self.ui_cli.player_split_hand(self.player, self.bank.current_bet)
+        if ans == "s":
+            self.player.hand.split()
+            self.player.hand.add_card(self.shoe.get_card(), 1)
+            self.player.hand.add_card(self.shoe.get_card(), 2)
+            self.ui_cli.player_selection_split_hand(self.player)
+            # Go through new hands
+            for i in range(1, 3):
+                while True:
+                    if self.check_for_bust(self.player, i) or self.check_for_21(self.player, i):
+                        break
+                    ans = self.ui_cli.player_selection_hand(i)
+                    if ans == "h":
+                        self.player.hand.add_card(self.shoe.get_card(), i)
+                        self.ui_cli.player_selection_split_hand(self.player)
+                    if ans == "p":
+                        break
+            self.players_turn = False
+        elif ans == "p":
+            return
+
+    def player_deal_cards(self):
+        """Deal players hand_num and give options."""
+        while self.players_turn and not self.check_for_bust(self.player):
+            self.ui_cli.player_status_hand(self.player)
+            ans = self.ui_cli.player_selection_hand()
+            if ans == "h":
+                self.player.hand.add_card(self.shoe.get_card())
+                self.player_check_status()
+            if ans == "p":
+                self.players_turn = False
+                return
+
+    def player_check_status(self, hand_num = 0):
+        """Check the get_info of player during one hand."""
+        if self.check_for_bust(self.player, hand_num):
+            self.players_turn = False
+            self.running = False
+            self.player.cash_reduce(self.bank.current_bet)
+            self.ui_cli.player_busted(self.player, self.bank.current_bet, hand_num)
+        if self.check_for_21(self.player, hand_num):
+            self.players_turn = False
+            self.running = False
+            self.player.cash_add(self.bank.current_bet)
+            self.ui_cli.player_got_21(self.player, self.bank.current_bet)
+
+    def dealer_deal_cards(self):
+        """Set cards to Dealers hand while.
+        Check Dealers hand and if its >=17 then compare it to Players hand."""
+        while self.running and not self.check_for_bust(self.player):
+            if self.dealer.hand.get_sum_of_cards() >= 17:
+                self.running = False
+                self.ui_cli.showdown()
+                if self.player.hand.hand_split:
+                    for i in range(1, 3):
+                        self.compare_hands(self.player, i)
+                else:
+                    self.compare_hands(self.player)
+            else:
+                self.dealer.hand.add_card(self.shoe.get_card())
+        self.ui_cli.dealer_status(self.dealer)
+
+    def compare_hands(self, player, hand_num = 0):
+        """Compare hands between Dealer and Player."""
         dealer_sum = self.dealer.hand.get_sum_of_cards()
-        if dealer_sum > 21:
-            self.game_over = True
-            self.player.cash_add(self.bet)
-            self.ui.status_player_busted(self.dealer)
-            return False
-        if dealer_sum == 21:
-            self.game_over = True
-            self.player.cash_reduce(self.bet)
-            self.ui.status_player_got_21(self.dealer)
-            return False
-        if dealer_sum >= 17:
-            if dealer_sum == player_sum:
-                self.ui.status_its_a_tie(self.player)
-            if dealer_sum > player_sum:
-                self.player.cash_reduce(self.bet)
-                self.ui.status_won(self.dealer)
-            if dealer_sum < player_sum:
-                self.player.cash_add(self.bet)
-                self.ui.status_won(self.player)
-            self.game_over = True
-            return False
-        return True
+        player_sum = player.hand.get_sum_of_cards(hand_num)
+        if self.check_for_bust(player, hand_num):
+            player.cash_reduce(self.bank.current_bet)
+            self.ui_cli.player_busted(player, self.bank.current_bet, hand_num)
+        elif self.check_for_21(player, hand_num):
+            player.cash_add(self.bank.current_bet)
+            self.ui_cli.player_got_21(player, self.bank.current_bet, hand_num)
+        elif self.check_for_21(self.dealer):
+            player.cash_reduce(self.bank.current_bet)
+            self.ui_cli.dealer_21(self.dealer)
+        elif self.check_for_bust(self.dealer):
+            player.cash_add(self.bank.current_bet)
+            self.ui_cli.player_won(player, self.bank.current_bet, hand_num)
+        elif dealer_sum == player_sum:
+            self.ui_cli.player_tie(player, self.bank.current_bet, hand_num)
+        elif dealer_sum > player_sum:
+            player.cash_reduce(self.bank.current_bet)
+            self.ui_cli.player_lost(player, self.bank.current_bet, hand_num)
+        else:
+            player.cash_add(self.bank.current_bet)
+            self.ui_cli.player_won(player, self.bank.current_bet, hand_num)
+
+    def check_for_blackjack(self, player):
+        """Check if Player has a blackjack."""
+        if 1 in player.hand.cards[0] and 10 in player.hand.cards[0]:
+            return True
+        return False
+
+    def check_for_21(self, player, cards = 0):
+        """Check if a Player has 21 points."""
+        if player.hand.get_sum_of_cards(cards) == 21:
+            return True
+        return False
+
+    def check_for_bust(self, player, cards = 0):
+        """Check if a Player has gone over 21 points."""
+        if player.hand.get_sum_of_cards(cards) > 21:
+            return True
+        return False

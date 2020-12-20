@@ -5,20 +5,24 @@
     """
 
 import random
-from ui.cli_ui import Ui
+from ui.ui_cli import Ui
 
 
 class Shoe:
-    """Shoe entities and its functionality."""
+    """ Shoe and its functionality.
+
+        """
 
     def __init__(self):
-        self.ui = Ui()
+        self.ui_cli = Ui()
         self.shoe = []
+        self.card = -1
         self.cut_card = 0
-        self.__create_shoe()
+        self.create_shoe()
 
-    def __create_shoe(self):
+    def create_shoe(self):
         """Create a Shoe and place a "cut card" between cards 237-252."""
+        self.shoe.clear()
         for _ in range(6):
             for _ in range(4):
                 for card in range(13):
@@ -29,13 +33,9 @@ class Shoe:
     def get_card(self):
         """Get one card from Shoe."""
         if len(self.shoe) == self.cut_card:
-            self.ui.shuffling_deck()
-            self.__create_shoe()
-        card = self.shoe.pop()
-        if card > 10:
-            card = 10
-        return card
-
-    def get_size(self):
-        """Return how many cards are left in Shoe."""
-        return len(self.shoe)
+            self.ui_cli.shuffling_deck()
+            self.create_shoe()
+        self.card = self.shoe.pop()
+        if self.card > 10:
+            self.card = 10
+        return self.card
