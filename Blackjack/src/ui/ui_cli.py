@@ -1,8 +1,5 @@
 class Ui:
-    """ui_cli.py
-
-        UI class responsible for the CLI UI.
-        """
+    """UI class responsible for the CLI UI."""
 
     def player_cash_balance(self, player, bet):
         print("")
