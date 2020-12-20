@@ -8,5 +8,4 @@ __pycache__
 *$py.class
 
 # data files
-*.dat
 /.idea/
