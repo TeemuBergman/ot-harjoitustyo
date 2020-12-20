@@ -9,8 +9,9 @@ class UserRepository:
         self.file_path = USER_REPOSITORY_FILE_PATH
 
     def init_user_settings(self):
-        # Use touch to see if file exists
-        Path(self.file_path).touch()
+        # Create user data repository
+        file_write = open(self.file_path, "w+")
+        file_write.close()
 
     def read_user_settings(self):
         # Read Player settings data from reposition.
