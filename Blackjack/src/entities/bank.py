@@ -5,9 +5,7 @@
 
 
 class Bank:
-    """
-        Kirjoita!
-    """
+    """Bank and its functionality."""
 
     def __init__(self):
         self.current_bet = 100

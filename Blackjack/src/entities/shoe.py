@@ -9,9 +9,7 @@ from ui.ui_cli import Ui
 
 
 class Shoe:
-    """ Shoe and its functionality.
-
-        """
+    """ Shoe and its functionality."""
 
     def __init__(self):
         self.ui_cli = Ui()
