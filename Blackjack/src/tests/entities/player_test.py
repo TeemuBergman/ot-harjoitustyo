@@ -31,3 +31,15 @@ class TestPlayer(TestCase):
         """Check that Player's cash balance is correct after reducing some cash."""
         self.player.cash_reduce(1000)
         self.assertEqual(self.player.cash_balance, 0)
+
+    def test_save_game(self):
+        """Test that saved game data is returned correctly."""
+        self.player.name = "TestBot"
+        self.player.cash_balance = 99
+        self.assertEqual(self.player.save_game(), ("TestBot", 99))
+
+    def test_load_game(self):
+        """Test that loaded game data is saved correctly to variables."""
+        self.player.load_game(("TestBot", 99))
+        self.assertEqual(self.player.name, "TestBot")
+        self.assertEqual(self.player.cash_balance, 99)
