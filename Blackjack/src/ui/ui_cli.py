@@ -1,22 +1,8 @@
-"""ui_cli.py
-
-    UI for the command line interface.
-    """
-
-"""from colorama import init, Fore, Back, Style
-
-init()
-
-print(Fore.RED + 'some red text')
-print(Back.GREEN + 'and with a green background')
-print(Style.DIM + 'and in dim text')
-print(Style.RESET_ALL)
-print('back to normal now')"""
-
-
 class Ui:
+    """ui_cli.py
 
-    # Player
+        UI class responsible for the CLI UI.
+        """
 
     def player_cash_balance(self, player, bet):
         print("")
@@ -31,7 +17,18 @@ class Ui:
               player.hand.cards[cards])
 
     def player_selection_start(self):
-        return input("Select: (d)eal a new hand | modify bet: (+)100, (-)100 | (q)uit: ").lower()
+        return input("Select: (d)eal a new hand | modify bet: (+)100, (-)100 | (o)ptions: ").lower()
+
+    def player_options(self):
+        return input("Select: (s)ave game | (l)oad game | (q)uit: ").lower()
+
+    def player_saved(self):
+        print("")
+        print("----- Game saved!")
+
+    def player_loaded(self):
+        print("")
+        print("----- Game loaded!")
 
     def player_selection_hand(self, hand_num = 0):
         if hand_num == 0:
