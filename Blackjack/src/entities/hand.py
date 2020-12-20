@@ -1,20 +1,13 @@
-""" hand.py
-
-    Hand entities for every played hand.
-    """
-
 from collections import defaultdict
 
 class Hand:
-    """Hand entities contains card values for the current hand and possibility to split hand."""
+    """ Hand class contains all the cards in Players hand."""
 
     def __init__(self):
-        """ Class constructor that creates Players hand to hold the cards in.
-
-            self.hand_num[0] = all hand_num in hand
+        """ self.hand_num[0] = all hand_num in hand
             self.hand_num[1] = left hand after split
             self.hand_num[2] = right hand after split
-            """
+        """
         self.cards = defaultdict(list)
         self.hand_split = False
 

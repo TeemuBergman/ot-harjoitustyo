@@ -1,8 +1,3 @@
-""" game.py
-
-    Blackjack game logic.
-    """
-
 import sys
 from entities.player import Player
 from entities.shoe import Shoe
@@ -11,7 +6,9 @@ from ui.ui_cli import Ui
 from repositories.user_repository import UserRepository
 
 class Game:
-    """Blackjack games main Game entities. This contains all logic for house dealer and player."""
+    """ Blackjack games main Game class.
+        This contains all logic for house dealer and player.
+    """
 
     def __init__(self):
         self.user_repository = UserRepository()

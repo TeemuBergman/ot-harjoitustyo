@@ -1,11 +1,5 @@
-""" bank.py
-
-    This class contains all of the money handling methods.
-    """
-
-
 class Bank:
-    """Bank and its functionality."""
+    """Bank class and its functionality."""
 
     def __init__(self):
         self.current_bet = 100

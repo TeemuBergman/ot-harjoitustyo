@@ -1,15 +1,13 @@
-""" shoe.py
-
-    In Blackjack shoe is a combination of 6 card decks of 52 cards, total of 312 cards.
-    Point where shoe will be resuffled is marked by the cut card.
-    """
-
 import random
 from ui.ui_cli import Ui
 
 
 class Shoe:
-    """ Shoe and its functionality."""
+    """ Shoe class contains all the cards that will be used to play Blackjack.
+
+        "In Blackjack shoe is a combination of 6 card decks of 52 cards, total of 312 cards.
+        Point where shoe will be resuffled is marked by the cut card."
+    """
 
     def __init__(self):
         self.ui_cli = Ui()

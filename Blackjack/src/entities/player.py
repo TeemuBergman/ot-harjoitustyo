@@ -1,14 +1,14 @@
-""" player.py
-
-    This is where dealer and every player in blackjack table get initialized.
-    Default cash balance is 1000.
-    """
-
 from entities.hand import Hand
 
 
 class Player:
-    """ Functionality for Player object. """
+    """ This is where dealer and every player in blackjack table get initialized.
+        Default cash balance is 1000.
+
+        Attributes:
+            name: Player name
+            amount: Cash amount. Default is 1000.
+        """
 
     def __init__(self, name, amount = 1000):
         self.name = name
