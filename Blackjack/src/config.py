@@ -1,6 +1,6 @@
-import os
+from os import path, getenv
 
-dirname = os.path.dirname(__file__)
+dirname = path.dirname(__file__)
 
-USER_REPOSITORY_FILENAME = os.getenv('USER_REPOSITORY_FILENAME') or 'user_repository.dat'
-USER_REPOSITORY_FILE_PATH = os.path.join(dirname, 'data', USER_REPOSITORY_FILENAME)
+USER_REPOSITORY_FILENAME = getenv('USER_REPOSITORY_FILENAME') or 'user_repository.dat'
+USER_REPOSITORY_FILE_PATH = path.join(dirname, 'data', USER_REPOSITORY_FILENAME)
