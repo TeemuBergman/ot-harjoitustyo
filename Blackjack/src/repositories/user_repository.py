@@ -3,6 +3,8 @@ from config import USER_REPOSITORY_FILE_PATH
 
 
 class UserRepository:
+    """UserRepository contains all the file handling methods."""
+
     def __init__(self):
         self.file_path = USER_REPOSITORY_FILE_PATH
 
