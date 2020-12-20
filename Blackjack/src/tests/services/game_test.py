@@ -4,7 +4,7 @@
     """
 
 from unittest import TestCase, mock
-from entities.game import Game
+from services.game import Game
 
 
 class TestGame(TestCase):
@@ -180,8 +180,3 @@ class TestGame(TestCase):
             self.game.players_turn = False
             self.game.start_options()
             self.assertTrue(self.game.players_turn)
-
-    def test_deal_first_cards_clear_hands(self):
-        """Clear Player hand."""
-        self.game.deal_first_cards()
-        self.assertEqual(len(self.game.player.hand.cards[0]), 2)

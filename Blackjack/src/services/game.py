@@ -8,12 +8,13 @@ from entities.player import Player
 from entities.shoe import Shoe
 from entities.bank import Bank
 from ui.ui_cli import Ui
-
+from repositories.user_repository import UserRepository
 
 class Game:
     """Blackjack games main Game entities. This contains all logic for house dealer and player."""
 
     def __init__(self):
+        # self.repository = UserRepository()
         self.ui_cli = Ui()
         self.bank = Bank()
         self.shoe = Shoe()
@@ -53,10 +54,20 @@ class Game:
                     self.bank.bet_raise()
                 if ans == "-":
                     self.bank.bet_reduce()
-                if ans == "q":
-                    sys.exit()
+                if ans == "o":
+                    self.player_options()
             else:
                 self.ui_cli.game_over()
+                sys.exit()
+
+    def player_options(self):
+        ans = self.ui_cli.player_options()
+        while True:
+            if ans == "s":
+                self.repository.write_user_settings(self.player.name, self.player.cash_balance)
+            if ans == "l":
+                sys.exit()
+            if ans == "q":
                 sys.exit()
 
     def deal_first_cards(self):
