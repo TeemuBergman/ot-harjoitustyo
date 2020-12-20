@@ -1,28 +1,32 @@
 # työaikakirjanpito
 
- päivä  aika  	mitä tein  
+ päivä  aika    mitä tein  
  -------------------------------------------
- 05.11. 2		Pipenv:iin tutustumista ja Pythonin asentamista kehitysympäristöön
- 05.11. 3		Blackjack pelin ohjelmointia
- 10.11. 5		Blackjack pelin ohjelmointia
- 13.11. 4		Blackjack pelin ohjelmointia
- 17.11. 6		Blackjack pelin ohjelmointia
- 17.11. 2		Pytest testien kirjoittamista Player luokalle
- 17.11. 1		Pipenv ongelmien ratkomista
- 17.11. 1		Dokumentaation kirjoittamista
- 23.11. 1		Docstring-kommenttien kirjoittamista.
- 23.11. 3		Pytest testien kirjoittamista Player ja Game luokille
- 24.11. 2		Uusien toiminnallisuuksien ohjelmointia (mm. split hand)
- 24.11. 2		Uuden luokan ohjelmointi (Hand)
- 24.11. 1		Alustavan rakenteen kuvaamista luokkakaaviolla
- 24.11. 1		Dokumentaation päivitystä
- 30.11. 1		Tietokannan suunnittelua
- 30.11. 2		Tietokannan luominen build.py tiedoston kautta
- 01.12. 4		Koodin refaktointia
- 02.12. 4		Uusien ominaisuuksien ohjelmointia sekä koodin refaktointia
- 07.12.	1		Koodin refaktointia ja docstringien kirjoittamista
- 08.12.	1		Koodin refaktointia ja docstringien kirjoittamista
- 08.12.	2		Tietokantatoiminnallisuuden ohjelmointia
- 
- yht    44
+ 05.11. 2       Pipenv:iin tutustumista ja Pythonin asentamista kehitysympäristöön
+ 05.11. 3       Blackjack pelin ohjelmointia
+ 10.11. 5       Blackjack pelin ohjelmointia
+ 13.11. 4       Blackjack pelin ohjelmointia
+ 17.11. 6       Blackjack pelin ohjelmointia
+ 17.11. 2       Pytest testien kirjoittamista Player luokalle
+ 17.11. 1       Pipenv ongelmien ratkomista
+ 17.11. 1       Dokumentaation kirjoittamista
+ 23.11. 1       Docstring-kommenttien kirjoittamista.
+ 23.11. 3       Pytest testien kirjoittamista Player ja Game luokille
+ 24.11. 2       Uusien toiminnallisuuksien ohjelmointia (mm. split hand)
+ 24.11. 2       Uuden luokan ohjelmointi (Hand)
+ 24.11. 1       Alustavan rakenteen kuvaamista luokkakaaviolla
+ 24.11. 1       Dokumentaation päivitystä
+ 30.11. 1       Tietokannan suunnittelua
+ 30.11. 2       Tietokannan luominen build.py tiedoston kautta
+ 01.12. 4       Koodin refaktointia
+ 02.12. 4       Uusien ominaisuuksien ohjelmointia sekä koodin refaktointia
+ 07.12. 1       Koodin refaktointia ja docstringien kirjoittamista
+ 08.12. 1       Koodin refaktointia ja docstringien kirjoittamista
+ 08.12. 2       Tietokantatoiminnallisuuden ohjelmointia
+ 28.12. 8       Koodin refaktointia split-toiminnallisuuden sovittamiseksi
+ 29.12. 2       Save/Load Game-toiminnallisuuden ohjelmointi
+ 30.12. 1       Dokumentaation päivitystä
+ 30.12. 2       Sovelluksen rakenteen muuttamista
+
+ yht    57
  
