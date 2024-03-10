@@ -1,6 +1,9 @@
+### Projekti arkistoitu
+Tämä projekti on tutkintoni yksi monista harjoitustöistä, eikä jatkokehitystä ole tulossa lisää.
+
 # Blackjack
 
-Sovelluksen avulla on mahdollista pelata virtuaalirahalla Blackjack-korttipeliä talon jakajaa vastaan (jakajan täytyy ottaa kortteja 17 pisteeseen asti).
+Sovelluksen avulla on mahdollista pelata virtuaalirahalla Blackjack-korttipeliä talon jakajaa vastaan.
 
 > Blackjack on suuresti  venttiä muistuttava korttipeli, jossa tavoitteena on saada kahdella tai  useammalla kortilla pelikäsi, jolla voittaa jakajan käden joko siten,  että pelaajan käden pistemäärä on lähempänä kahtakymmentäyhtä kuin  jakajan tai siten että jakajan käden pistemäärä menee yli  kahdenkymmenenyhden [Blackjack, 2020].
 
